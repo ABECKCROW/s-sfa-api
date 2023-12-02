@@ -20,7 +20,7 @@
    A)　システム構成図<br />
    　　・ER図<br />
 
-![ER図(S-SFA).png](img%2FER%E5%9B%B3%28S-SFA%29.png)
+   ![ER図(S-SFA).png](img%2FER%E5%9B%B3%28S-SFA%29.png)
    B)　背景<br />
    <table>
                <thead>
@@ -53,7 +53,7 @@
 2. <details><summary>業務要件</summary><div>
    A)　業務フロー<br />
 
-![業務フロー.png](img%2F%E6%A5%AD%E5%8B%99%E3%83%95%E3%83%AD%E3%83%BC.png)
+   ![業務フロー.png](img%2F%E6%A5%AD%E5%8B%99%E3%83%95%E3%83%AD%E3%83%BC.png)
    B)　規模<br />
 　　　　・一人<br />
    C)　時期・時間<br />
