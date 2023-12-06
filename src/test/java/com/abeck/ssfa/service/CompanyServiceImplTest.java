@@ -2,6 +2,7 @@ package com.abeck.ssfa.service;
 
 import com.abeck.ssfa.Exception.CompanyNotFoundException;
 import com.abeck.ssfa.controller.CompanyResponse;
+import com.abeck.ssfa.entity.CompanyEntity;
 import com.abeck.ssfa.mapper.CompanyMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
@@ -35,5 +37,14 @@ class CompanyServiceImplTest {
         assertThat(actual).isEqualTo(companyResponse);
 
         verify(companyMapper, times(1)).findAllCompanies("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
+    }
+
+    @Test
+    public void 企業検索で存在するIDを指定したときに正常に企業情報が返されること() throws CompanyNotFoundException {
+        doReturn(Optional.of(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"))).when(companyMapper).findCompanyById(1);
+
+        CompanyEntity actual = companyServiceImpl.findCompanyById(1);
+        assertThat(actual).isEqualTo(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"));
+        verify(companyMapper, times(1)).findCompanyById(1);
     }
 }
