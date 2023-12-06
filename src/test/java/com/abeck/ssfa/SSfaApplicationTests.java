@@ -1,4 +1,4 @@
-package com.abeck.SSFA;
+package com.abeck.ssfa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
