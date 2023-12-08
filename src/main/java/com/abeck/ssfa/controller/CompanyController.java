@@ -18,7 +18,7 @@ public class CompanyController {
     private final CompanyServiceImpl companyService;
 
     @GetMapping("")
-    public List<CompanyResponse> getCompanies(
+    public List<CompanyEntity> getCompanies(
                 @RequestParam(value = "companyName", required = false) String companyName,
                 @RequestParam(value = "companyPhone", required = false) String companyPhone,
                 @RequestParam(value = "region", required = false) String region,

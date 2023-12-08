@@ -29,15 +29,15 @@ class CompanyServiceImplTest {
     CompanyMapper companyMapper;
 
     @Test
-    public void 企業検索でfindAllCompaniesメソッドが呼び出されること() throws CompanyNotFoundException {
-        List<CompanyResponse> companyResponse = List.of(
-                new CompanyResponse(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"));
-                doReturn(companyResponse).when(companyMapper).findAllCompanies("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
+    public void 企業検索でgetCompanyWithFilterメソッドが呼び出されること() throws CompanyNotFoundException {
+        List<CompanyEntity> companyEntity = List.of(
+                new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"));
+                doReturn(companyEntity).when(companyMapper).getCompanyWithFilter("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
 
-        List<CompanyResponse> actual = companyServiceImpl.findAllCompanies("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
-        assertThat(actual).isEqualTo(companyResponse);
+        List<CompanyEntity> actual = companyServiceImpl.getCompanyWithFilter("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
+        assertThat(actual).isEqualTo(companyEntity);
 
-        verify(companyMapper, times(1)).findAllCompanies("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
+        verify(companyMapper, times(1)).getCompanyWithFilter("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
     }
 
     @Test
