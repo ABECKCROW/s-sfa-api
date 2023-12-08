@@ -1,4 +1,4 @@
-package com.abeck.ssfa;
+package com.abeck.ssfa.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
