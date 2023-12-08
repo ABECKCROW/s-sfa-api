@@ -14,10 +14,10 @@ public class CompanySqlProvider {
     ) {
         return new SQL() {{
             SELECT("*");
-            FROM("your_table");
+            FROM("companies");
 
             if (companyName != null && !companyName.isEmpty()) {
-                WHERE("company_name = #{companyName}");
+                WHERE("company_name LIKE CONCAT('%', #{companyName}, '%')");
             }
 
             if (companyPhone != null && !companyPhone.isEmpty()) {
