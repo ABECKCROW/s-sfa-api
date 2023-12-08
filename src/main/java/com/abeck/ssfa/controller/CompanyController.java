@@ -1,7 +1,7 @@
 package com.abeck.ssfa.controller;
 
 import com.abeck.ssfa.entity.CompanyEntity;
-import com.abeck.ssfa.service.CompanyServiceImpl;
+import com.abeck.ssfa.service.CompanyService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/companies")
 @AllArgsConstructor
 public class CompanyController {
-    private final CompanyServiceImpl companyService;
+    private final CompanyService companyService;
 
     @GetMapping("")
     public List<CompanyEntity> getCompanies(
