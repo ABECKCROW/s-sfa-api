@@ -21,10 +21,10 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2'
+	testImplementation 'com.github.database-rider:rider-spring:1.32.3'
 }
 
 tasks.named('bootBuildImage') {
