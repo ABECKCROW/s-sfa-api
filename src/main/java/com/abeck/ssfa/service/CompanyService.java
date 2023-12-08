@@ -6,8 +6,8 @@ import com.abeck.ssfa.entity.CompanyEntity;
 import java.util.List;
 
 public interface CompanyService {
-    List<CompanyResponse> findAllCompanies(
-            String companyName,String companyPhone,String region,String city,String rank);
+
+    List<CompanyResponse> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String rank);
 
     CompanyEntity findCompanyById(int companyId);
 }

@@ -25,7 +25,7 @@ public class CompanyController {
                 @RequestParam(value = "city", required = false) String city,
                 @RequestParam(value = "rank", required = false) String rank
         ) {
-            return companyService.findAllCompanies(companyName,companyPhone,region,city,rank);
+            return companyService.getCompanyWithFilter(companyName,companyPhone,region,city,rank);
     }
 
     @GetMapping("/{companyId}")
