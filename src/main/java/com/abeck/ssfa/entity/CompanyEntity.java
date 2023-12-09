@@ -19,5 +19,5 @@ public class CompanyEntity {
     private String region;
     private String city;
     private String address;
-    private String rank;
+    private String companyRank;
 }

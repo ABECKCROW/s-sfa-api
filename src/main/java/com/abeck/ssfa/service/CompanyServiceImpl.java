@@ -16,8 +16,8 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyMapper companyMapper;
 
     @Override
-    public List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String rank) {
-        return companyMapper.getCompanyWithFilter(companyName,companyPhone,region,city,rank);
+    public List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String companyRank) {
+        return companyMapper.getCompanyWithFilter(companyName,companyPhone,region,city,companyRank);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class CompanySqlProvider {
             @Param("companyPhone") String companyPhone,
             @Param("region") String region,
             @Param("city") String city,
-            @Param("rank") String rank
+            @Param("companyRank") String companyRank
     ) {
         return new SQL() {{
             SELECT("*");
@@ -32,7 +32,7 @@ public class CompanySqlProvider {
                 WHERE("city LIKE CONCAT('%', #{city}, '%')");
             }
 
-            if (rank != null && !rank.isEmpty()) {
+            if (companyRank != null && !companyRank.isEmpty()) {
                 WHERE("rank LIKE CONCAT('%', #{rank}, '%')");
             }
         }}.toString();

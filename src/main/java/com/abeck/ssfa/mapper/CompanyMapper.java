@@ -18,7 +18,7 @@ import java.util.Optional;
              @Param("companyPhone") String companyPhone,
              @Param("region") String region,
              @Param("city") String city,
-             @Param("rank") String rank
+             @Param("companyRank") String companyRank
      );
 
      @Select("SELECT * FROM companies WHERE company_id = #{companyId}")

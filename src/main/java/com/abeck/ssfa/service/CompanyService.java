@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CompanyService {
 
-    List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String rank);
+    List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String companyRank);
 
     CompanyEntity findCompanyById(int companyId);
 }
