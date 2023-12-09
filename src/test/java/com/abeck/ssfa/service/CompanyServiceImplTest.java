@@ -52,9 +52,7 @@ class CompanyServiceImplTest {
     public void 企業検索で存在しないIDを指定したときに例外がスローされること() {
         doReturn(Optional.empty()).when(companyMapper).findCompanyById(99);
 
-        assertThatThrownBy(() -> companyServiceImpl.findCompanyById(99)).isInstanceOfSatisfying(CompanyNotFoundException.class, e -> {
-            assertThat(e.getMessage()).isEqualTo("Company Not Found");
-        });
+        assertThatThrownBy(() -> companyServiceImpl.findCompanyById(99)).isInstanceOfSatisfying(CompanyNotFoundException.class, e -> assertThat(e.getMessage()).isEqualTo("Company Not Found"));
         verify(companyMapper, times(1)).findCompanyById(99);
     }
 }
