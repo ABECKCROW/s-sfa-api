@@ -1,7 +1,6 @@
 package com.abeck.ssfa.service;
 
 import com.abeck.ssfa.Exception.CompanyNotFoundException;
-import com.abeck.ssfa.controller.CompanyResponse;
 import com.abeck.ssfa.entity.CompanyEntity;
 import com.abeck.ssfa.mapper.CompanyMapper;
 import org.junit.jupiter.api.Test;

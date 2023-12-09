@@ -9,5 +9,4 @@ class SSfaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

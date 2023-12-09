@@ -1,6 +1,5 @@
 package com.abeck.ssfa.mapper;
 
-import com.abeck.ssfa.controller.CompanyResponse;
 import com.abeck.ssfa.entity.CompanyEntity;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.spring.api.DBRider;
@@ -41,8 +40,4 @@ public class CompanyMapperTest {
                 .hasSize(1).contains(
                         new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"));
     }
-
-
-
-
 }
