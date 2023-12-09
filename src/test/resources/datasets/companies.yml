@@ -1,3 +1,16 @@
+sales_persons:
+  - sales_person_id: 1
+    sales_person_name: "安部"
+
+  - sales_person_id: 2
+    sales_person_name: "山田"
+
+  - sales_person_id: 3
+    sales_person_name: "佐藤"
+
+  - sales_person_id: 4
+    sales_person_name: "鈴木"
+
 companies:
   - company_id: 1
     company_name: "ABECK株式会社"
@@ -6,6 +19,7 @@ companies:
     city: "千代田区"
     address: "1-1-1"
     company_rank: "S"
+    sales_person_id: 1
 
   - company_id: 2
     company_name: "Disk株式会社"
@@ -14,6 +28,7 @@ companies:
     city: "厚木市"
     address: "2-2-2"
     company_rank: "A"
+    sales_person_id: 2
 
   - company_id: 3
     company_name: "マウンテン株式会社"
@@ -22,6 +37,7 @@ companies:
     city: "箱根町"
     address: "3-3-3"
     company_rank: "B"
+    sales_person_id: 3
 
   - company_id: 4
     company_name: "シュガー株式会社"
@@ -30,3 +46,96 @@ companies:
     city: "綾瀬市"
     address: "4-4-4"
     company_rank: "C"
+    sales_person_id: 4
+
+histories:
+  - history_id: 1
+    history_date: "2023-11-10"
+    approach_type: "架電"
+    approach_results: "担当者不在"
+    company_id: 1
+
+  - history_id: 2
+    history_date: "2023-11-11"
+    approach_type: "架電"
+    approach_results: "担当者不在"
+    company_id: 2
+
+  - history_id: 3
+    history_date: "2023-11-12"
+    approach_type: "飛込"
+    approach_results: "担当者不在"
+    company_id: 1
+
+  - history_id: 4
+    history_date: "2023-11-13"
+    approach_type: "飛込"
+    approach_results: "担当者不在"
+    company_id: 2
+
+  - history_id: 5
+    history_date: "2023-11-14"
+    approach_type: "架電"
+    approach_results: "挨拶のアポイント取得"
+    company_id: 1
+
+  - history_id: 6
+    history_date: "2023-11-15"
+    approach_type: "架電"
+    approach_results: "提案のアポイント取得"
+    company_id: 2
+
+  - history_id: 7
+    history_date: "2023-11-16"
+    approach_type: "訪問"
+    approach_results: "挨拶"
+    company_id: 1
+
+  - history_id: 8
+    history_date: "2023-11-17"
+    approach_type: "訪問"
+    approach_results: "携帯電話の提案。"
+    company_id: 2
+
+  - history_id: 9
+    history_date: "2023-11-18"
+    approach_type: "info"
+    approach_results: "担当者不在"
+    company_id: 1
+
+  - history_id: 10
+    history_date: "2023-11-19"
+    approach_type: "info"
+    approach_results: "担当者不在"
+    company_id: 2
+
+  - history_id: 11
+    history_date: "2023-11-20"
+    approach_type: "架電"
+    approach_results: "担当者不在"
+    company_id: 3
+
+  - history_id: 12
+    history_date: "2023-11-20"
+    approach_type: "架電"
+    approach_results: "複合機のアポイント取得"
+    company_id: 4
+
+  - history_id: 13
+    history_date: "2023-11-21"
+    approach_type: "訪問"
+    approach_results: "複合機の提案"
+    company_id: 4
+
+appointments:
+  - appointment_id: 1
+    appointment_date: "2023-11-16"
+    history_id: 5
+
+  - appointment_id: 2
+    appointment_date: "2023-11-17"
+    history_id: 6
+
+  - appointment_id: 3
+    appointment_date: "2023-11-21"
+    history_id: 12
