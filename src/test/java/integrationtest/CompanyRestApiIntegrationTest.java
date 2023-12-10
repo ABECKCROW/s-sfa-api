@@ -47,7 +47,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         },
         {
             "companyId": 2,
@@ -56,7 +57,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "神奈川県",
                 "city": "厚木市",
                 "address": "2-2-2",
-                "companyRank": "A"
+                "companyRank": "A",
+                "salesPersonId": 2
         },
         {
             "companyId": 3,
@@ -65,7 +67,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "神奈川県",
                 "city": "箱根町",
                 "address": "3-3-3",
-                "companyRank": "B"
+                "companyRank": "B",
+                "salesPersonId": 3
         },
         {
             "companyId": 4,
@@ -74,7 +77,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "神奈川県",
                 "city": "綾瀬市",
                 "address": "4-4-4",
-                "companyRank": "C"
+                "companyRank": "C",
+                "salesPersonId": 4
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -97,7 +101,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -120,7 +125,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -143,7 +149,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -166,7 +173,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -189,7 +197,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
     ]
         """, response, JSONCompareMode.STRICT);
@@ -211,7 +220,8 @@ public class CompanyRestApiIntegrationTest {
                 "region": "東京都",
                 "city": "千代田区",
                 "address": "1-1-1",
-                "companyRank": "S"
+                "companyRank": "S",
+                "salesPersonId": 1
         }
         """, response, JSONCompareMode.STRICT);
     }

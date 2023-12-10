@@ -30,7 +30,7 @@ class CompanyServiceImplTest {
     @Test
     public void 企業検索でgetCompanyWithFilterメソッドが呼び出されること() throws CompanyNotFoundException {
         List<CompanyEntity> companyEntity = List.of(
-                new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"));
+                new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S",1));
                 doReturn(companyEntity).when(companyMapper).getCompanyWithFilter("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
 
         List<CompanyEntity> actual = companyServiceImpl.getCompanyWithFilter("株式会社ABECK","03-1234-5678","東京都","千代田区","S");
@@ -41,10 +41,10 @@ class CompanyServiceImplTest {
 
     @Test
     public void 企業検索で存在するIDを指定したときに正常に企業情報が返されること() throws CompanyNotFoundException {
-        doReturn(Optional.of(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"))).when(companyMapper).findCompanyById(1);
+        doReturn(Optional.of(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S",1))).when(companyMapper).findCompanyById(1);
 
         CompanyEntity actual = companyServiceImpl.findCompanyById(1);
-        assertThat(actual).isEqualTo(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S"));
+        assertThat(actual).isEqualTo(new CompanyEntity(1,"株式会社ABECK","03-1234-5678","東京都","千代田区","1-1-1","S",1));
         verify(companyMapper, times(1)).findCompanyById(1);
     }
 

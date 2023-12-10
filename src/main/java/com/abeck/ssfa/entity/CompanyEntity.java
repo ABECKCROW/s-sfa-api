@@ -19,4 +19,5 @@ public class CompanyEntity {
     private String city;
     private String address;
     private String companyRank;
+    private int salesPersonId;
 }

@@ -14,4 +14,5 @@ public class CompanyResponse {
     private String city;
     private String address;
     private String companyRank;
+    private int salesPersonId;
 }

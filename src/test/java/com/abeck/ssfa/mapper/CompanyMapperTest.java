@@ -25,10 +25,10 @@ public class CompanyMapperTest {
     void クエリパラメータの指定がないときにすべての企業情報が取得できること() {
         assertThat(companyMapper.getCompanyWithFilter(null, null, null, null, null))
                 .hasSize(4).contains(
-                        new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"),
-                        new CompanyEntity(2, "Disk株式会社", "046-123-4567","神奈川県", "厚木市",  "2-2-2", "A"),
-                        new CompanyEntity(3, "マウンテン株式会社", "0460-12-3456","神奈川県", "箱根町",  "3-3-3", "B"),
-                        new CompanyEntity(4, "シュガー株式会社", "0467-12-3456","神奈川県", "綾瀬市",  "4-4-4", "C")
+                        new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S", 1),
+                        new CompanyEntity(2, "Disk株式会社", "046-123-4567","神奈川県", "厚木市",  "2-2-2", "A", 2),
+                        new CompanyEntity(3, "マウンテン株式会社", "0460-12-3456","神奈川県", "箱根町",  "3-3-3", "B", 3),
+                        new CompanyEntity(4, "シュガー株式会社", "0467-12-3456","神奈川県", "綾瀬市",  "4-4-4", "C", 4)
                 );
     }
 
@@ -36,7 +36,7 @@ public class CompanyMapperTest {
     @DataSet(value = "datasets/companies.yml")
     @Transactional
     void クエリパラメータの指定した内容と部分または完全一致する企業情報が取得できること() {
-        CompanyEntity companyEntity = new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S");
+        CompanyEntity companyEntity = new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S", 1);
         assertThat(companyMapper.getCompanyWithFilter("ABECK", null, null, null, null))
                 .hasSize(1).contains(companyEntity);
 
@@ -58,7 +58,7 @@ public class CompanyMapperTest {
     @Transactional
     void 企業検索で存在するIDを指定したときに正常に企業情報が取得できること() {
         assertThat(companyMapper.findCompanyById(1))
-                .contains(new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"));
+                .contains(new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S", 1));
     }
 
     @Test
