@@ -31,59 +31,56 @@
   - AWSデプロイ
 
 ### ◽️アプリケーション概略図
+実装後添付
 
 ### ◽️機能一覧
 
-### ◽️使用イメージ
 
-### ・検索
-### ・検索
-### ・検索
-### ・検索
+### ◽️使用イメージ
+| 項目 | 概要                             |
+|------|--------------------------------|
+| 検索 | 企業情報を企業名、住所、電話番号、ランクによる検索ができる。 |
+| 登録 | 実装中                            |
+| 変更 | 実装中                            |
+| 削除 | 実装中                            |
 
 
 ### ◽️設計書
 ***
 ### ・ER図
+![ER図(S-SFA).png](img%2FER%E5%9B%B3%28S-SFA%29.png)
+
 ### ・画面遷移図
+実装中
 
 ### ・API仕様書
 [SwaggerによるAPI仕様書(v1.0.0)](https://app.swaggerhub.com/apis/abeckcrow/S-SFA/1.0.0)
 
 ### ・インフラ構成図
+デプロイ予定
 
-### ローカルでのアプリケーション起動方法
-- Git, Java, Node.Js, Dockerをインストールする。
-- リポジトリをgit cloneする。　　 　 　　　 →`git clone`
-- クローンしたディレクトリに移動する。
-- Dockerを起動する。　　　　　　　　 　　 →`docker compose up`
-- Spring Bootを起動する。　　　　　 　　　 →`./gradlew bootRun`
-- frontendディレクトリに移動する。　 　　　→`cd frontend/`
-- 依存関係をインストールし、Reactのアプリケーションを起動する。
-　　　　　　　　　　　　　　　　　　　　→`npm install`　→　`npm start`
-- yarnがインストールされている場合は下記コマンドでも可  
-　　　　　　　　　　　　　　　　　　　　→`yarn`　→　`yarn start`
+
 
 ### 自動テスト
 以下のテストコードを実装。
 - 単体テスト
-  - CompanyServiceImpl, 
-  - あ
+  - CompanyServiceImpl
+  - CompanyMapper
 - 結合テスト
+  - CompanyController
 
 自動テストの実行結果
+実装後添付
 
 ### 作成スケジュール
-計画
-実績
+[Git Project参照](https://github.com/users/ABECKCROW/projects/4/views/2)
+
 
 進捗の振り返り
- - a
- - a
+ - 完成後実施
 
 ### 今後の展望
-- a
-- a
+- 完成後記載
 
 
 
