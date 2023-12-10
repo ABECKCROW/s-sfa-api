@@ -33,7 +33,7 @@ public class CompanySqlProvider {
             }
 
             if (companyRank != null && !companyRank.isEmpty()) {
-                WHERE("rank LIKE CONCAT('%', #{rank}, '%')");
+                WHERE("company_rank LIKE CONCAT('%', #{companyRank}, '%')");
             }
         }}.toString();
     }
