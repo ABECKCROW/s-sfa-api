@@ -34,44 +34,46 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}," +
-                "{" +
-                "    \"companyId\": 2," +
-                "    \"companyName\": \"Disk株式会社\"," +
-                "    \"companyPhone\": \"046-123-4567\"," +
-                "    \"region\": \"神奈川県\"," +
-                "    \"city\": \"厚木市\"," +
-                "    \"address\": \"2-2-2\"," +
-                "    \"companyRank\": \"A\"" +
-                "}," +
-                "{" +
-                "    \"companyId\": 3," +
-                "    \"companyName\": \"マウンテン株式会社\"," +
-                "    \"companyPhone\": \"0460-12-3456\"," +
-                "    \"region\": \"神奈川県\"," +
-                "    \"city\": \"箱根町\"," +
-                "    \"address\": \"3-3-3\"," +
-                "    \"companyRank\": \"B\"" +
-                "}," +
-                "{" +
-                "    \"companyId\": 4," +
-                "    \"companyName\": \"シュガー株式会社\"," +
-                "    \"companyPhone\": \"0467-12-3456\"," +
-                "    \"region\": \"神奈川県\"," +
-                "    \"city\": \"綾瀬市\"," +
-                "    \"address\": \"4-4-4\"," +
-                "    \"companyRank\": \"C\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        },
+        {
+            "companyId": 2,
+                "companyName": "Disk株式会社",
+                "companyPhone": "046-123-4567",
+                "region": "神奈川県",
+                "city": "厚木市",
+                "address": "2-2-2",
+                "companyRank": "A"
+        },
+        {
+            "companyId": 3,
+                "companyName": "マウンテン株式会社",
+                "companyPhone": "0460-12-3456",
+                "region": "神奈川県",
+                "city": "箱根町",
+                "address": "3-3-3",
+                "companyRank": "B"
+        },
+        {
+            "companyId": 4,
+                "companyName": "シュガー株式会社",
+                "companyPhone": "0467-12-3456",
+                "region": "神奈川県",
+                "city": "綾瀬市",
+                "address": "4-4-4",
+                "companyRank": "C"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -82,17 +84,19 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -103,17 +107,19 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -124,17 +130,19 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -145,17 +153,19 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -166,17 +176,19 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("[" +
-                "{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}" +
-                "]", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+    [
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+    ]
+        """, response, JSONCompareMode.STRICT);
     }
 
     @Test
@@ -187,14 +199,16 @@ public class CompanyRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        JSONAssert.assertEquals("{" +
-                "    \"companyId\": 1," +
-                "    \"companyName\": \"ABECK株式会社\"," +
-                "    \"companyPhone\": \"03-1234-5678\"," +
-                "    \"region\": \"東京都\"," +
-                "    \"city\": \"千代田区\"," +
-                "    \"address\": \"1-1-1\"," +
-                "    \"companyRank\": \"S\"" +
-                "}", response, JSONCompareMode.STRICT);
+        JSONAssert.assertEquals("""
+        {
+                "companyId": 1,
+                "companyName": "ABECK株式会社",
+                "companyPhone": "03-1234-5678",
+                "region": "東京都",
+                "city": "千代田区",
+                "address": "1-1-1",
+                "companyRank": "S"
+        }
+        """, response, JSONCompareMode.STRICT);
     }
 }
