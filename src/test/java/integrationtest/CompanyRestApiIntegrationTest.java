@@ -4,8 +4,10 @@ import com.abeck.ssfa.SSfaApplication;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.spring.api.DBRider;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.Customization;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.skyscreamer.jsonassert.comparator.CustomComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,6 +18,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.ZonedDateTime;
 
 @SpringBootTest(classes = SSfaApplication.class)
 @AutoConfigureMockMvc
@@ -210,5 +214,32 @@ public class CompanyRestApiIntegrationTest {
                 "companyRank": "S"
         }
         """, response, JSONCompareMode.STRICT);
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業検索で存在しないIDを指定したときに例外がスローされること() throws Exception {
+        ZonedDateTime currentDateTime = ZonedDateTime.now();
+        String timeStamp = currentDateTime.toString();
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/companies/99"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals(String.format("""
+            {
+              "timestamp": "%s",
+              "status": "404",
+              "error": "Not Found",
+              "message": "Company Not Found",
+              "path": "/companies/99"
+            }
+        """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (((o1, o2) -> {
+            ZonedDateTime time1 = ZonedDateTime.parse(o1.toString());
+            ZonedDateTime time2 = ZonedDateTime.parse(o2.toString());
+            Duration tolerance = Duration.ofSeconds(5);
+
+            return Duration.between(time1, time2).toMillis() <= tolerance.toMillis();
+        })))));
     }
 }

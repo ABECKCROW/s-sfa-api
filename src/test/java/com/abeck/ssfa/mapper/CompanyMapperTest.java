@@ -60,4 +60,12 @@ public class CompanyMapperTest {
         assertThat(companyMapper.findCompanyById(1))
                 .contains(new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"));
     }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業検索で存在しないIDを指定したときに空のOptionalが取得されること() {
+        assertThat(companyMapper.findCompanyById(99)).isEmpty();
+    }
+
 }
