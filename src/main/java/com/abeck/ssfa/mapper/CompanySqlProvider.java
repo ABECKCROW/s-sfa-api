@@ -3,6 +3,8 @@ package com.abeck.ssfa.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.Objects;
+
 public class CompanySqlProvider {
 
     public String SelectCompanyWithFilter(
@@ -16,23 +18,23 @@ public class CompanySqlProvider {
             SELECT("*");
             FROM("companies");
 
-            if (companyName != null && !companyName.isEmpty()) {
+            if (Objects.nonNull(companyName) && !companyName.isEmpty()) {
                 WHERE("company_name LIKE CONCAT('%', #{companyName}, '%')");
             }
 
-            if (companyPhone != null && !companyPhone.isEmpty()) {
+            if (Objects.nonNull(companyPhone) && !companyPhone.isEmpty()) {
                 WHERE("company_phone LIKE CONCAT('%', #{companyPhone}, '%')");
             }
 
-            if (region != null && !region.isEmpty()) {
+            if (Objects.nonNull(region) && !region.isEmpty()) {
                 WHERE("region LIKE CONCAT('%', #{region}, '%')");
             }
 
-            if (city != null && !city.isEmpty()) {
+            if (Objects.nonNull(city) && !city.isEmpty()) {
                 WHERE("city LIKE CONCAT('%', #{city}, '%')");
             }
 
-            if (companyRank != null && !companyRank.isEmpty()) {
+            if (Objects.nonNull(companyRank) && !companyRank.isEmpty()) {
                 WHERE("company_rank LIKE CONCAT('%', #{companyRank}, '%')");
             }
         }}.toString();
