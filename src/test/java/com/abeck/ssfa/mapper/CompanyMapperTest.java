@@ -36,8 +36,28 @@ public class CompanyMapperTest {
     @DataSet(value = "datasets/companies.yml")
     @Transactional
     void クエリパラメータの指定した内容と部分または完全一致する企業情報が取得できること() {
+        CompanyEntity companyEntity = new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S");
         assertThat(companyMapper.getCompanyWithFilter("ABECK", null, null, null, null))
-                .hasSize(1).contains(
-                        new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"));
+                .hasSize(1).contains(companyEntity);
+
+        assertThat(companyMapper.getCompanyWithFilter(null, "03-1234-5678", null, null, null))
+                .hasSize(1).contains(companyEntity);
+
+        assertThat(companyMapper.getCompanyWithFilter(null, null, "東京都", null, null))
+                .hasSize(1).contains(companyEntity);
+
+        assertThat(companyMapper.getCompanyWithFilter(null, null, null, "千代田区", null))
+                .hasSize(1).contains(companyEntity);
+
+        assertThat(companyMapper.getCompanyWithFilter(null, null, null, null, "S"))
+                .hasSize(1).contains(companyEntity);
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業検索で存在するIDを指定したときに正常に企業情報が取得できること() {
+        assertThat(companyMapper.findCompanyById(1))
+                .hasSameClassAs(1).contains(new CompanyEntity(1, "ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S"));
     }
 }
