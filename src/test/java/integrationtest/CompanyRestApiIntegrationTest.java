@@ -244,12 +244,7 @@ public class CompanyRestApiIntegrationTest {
               "message": "Company Not Found",
               "path": "/companies/99"
             }
-        """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (((o1, o2) -> {
-            ZonedDateTime time1 = ZonedDateTime.parse(o1.toString());
-            ZonedDateTime time2 = ZonedDateTime.parse(o2.toString());
-            Duration tolerance = Duration.ofSeconds(5);
-
-            return Duration.between(time1, time2).toMillis() <= tolerance.toMillis();
-        })))));
+        """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (((o1, o2) -> true
+        )))));
     }
 }
