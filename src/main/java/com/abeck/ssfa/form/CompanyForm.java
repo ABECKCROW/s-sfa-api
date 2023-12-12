@@ -15,7 +15,6 @@ public class CompanyForm {
     private String companyName;
 
     @Size(min =12, max = 12, message = "ハイフンを含めて12文字で入力してください")
-    @NotBlank(message ="電話番号は入力必須です。")
     private String companyPhone;
 
     @Size(min = 2, max = 4, message = "2〜4文字以内で入力してください")
