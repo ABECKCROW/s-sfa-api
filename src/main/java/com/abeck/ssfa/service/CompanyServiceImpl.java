@@ -4,7 +4,6 @@ import com.abeck.ssfa.Exception.CompanyNotFoundException;
 import com.abeck.ssfa.entity.CompanyEntity;
 
 import com.abeck.ssfa.mapper.CompanyMapper;
-import com.abeck.ssfa.mapper.SalesPersonMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import java.util.List;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyMapper companyMapper;
-    private final SalesPersonMapper salesPersonMapper;
 
     @Override
     public List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String companyRank) {
