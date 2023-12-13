@@ -15,7 +15,8 @@ public class CompanyForm {
     @NotBlank(message ="企業名は入力必須です。")
     private String companyName;
 
-    @Pattern(regexp = "^(0\\d{1,4}-\\d{1,4}-\\d{4}|^0\\d-\\d{4}-\\d{4}$|^0\\d{3}-\\d{2}-\\d{4}$|^(070|080|090)-\\d{4}-\\d{4}$|^050-\\d{4}-\\d{4}$|^0120-\\d{3}-\\d{3}$)",  message = "電話番号の形式で入力してください")
+    @Pattern(regexp = "^(0\\d{1,4}-\\d{1,4}-\\d{4}|^0\\d-\\d{4}-\\d{4}$|^0\\d{3}-\\d{2}-\\d{4}$|^(070|080|090)-\\d{4}-\\d{4}$|^050-\\d{4}-\\d{4}$|^0120-\\d{3}-\\d{3}$)",
+            message = "電話番号の形式で入力してください")
     private String companyPhone;
 
     @Size(min = 2, max = 4, message = "{min}〜{max}文字以内で入力してください")

@@ -61,7 +61,7 @@ public class CompanyController {
                 .build()
                 .toUri();
         String newId = String.valueOf(createdId);
-        return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID", "newId"));
+        return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID", newId));
     }
 
     @ExceptionHandler(CompanyNotFoundException.class)

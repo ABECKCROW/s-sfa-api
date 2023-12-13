@@ -12,7 +12,7 @@ CREATE TABLE sales_persons (
 CREATE TABLE companies (
     company_id INT unsigned AUTO_INCREMENT,
     company_name VARCHAR(40) NOT NULL,
-    company_phone VARCHAR(12) NOT NULL,
+    company_phone VARCHAR(13) NOT NULL,
     region VARCHAR(4) NOT NULL,
     city VARCHAR(6) NOT NULL,
     address VARCHAR(40),
