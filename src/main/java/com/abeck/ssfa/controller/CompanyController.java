@@ -1,12 +1,12 @@
 package com.abeck.ssfa.controller;
 
 import com.abeck.ssfa.Exception.CompanyNotFoundException;
+import com.abeck.ssfa.Exception.CompanyNotUniqueException;
 import com.abeck.ssfa.entity.CompanyEntity;
 import com.abeck.ssfa.form.CompanyForm;
 import com.abeck.ssfa.service.CompanyService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -57,11 +57,11 @@ public class CompanyController {
         int createdId = companyService.createCompany(companyForm.getCompanyName(), companyForm.getCompanyPhone(), companyForm.getRegion(), companyForm.getCity(), companyForm.getAddress(), companyForm.getCompanyRank(), companyForm.getSalesPersonId());
 
         URI url = UriComponentsBuilder.fromUriString("http://localhost:8080")
-                .path("" + createdId)
+                .path("/companies/" + createdId)
                 .build()
                 .toUri();
         String newId = String.valueOf(createdId);
-        return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID:", newId));
+        return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID", "newId"));
     }
 
     @ExceptionHandler(CompanyNotFoundException.class)
@@ -76,9 +76,9 @@ public class CompanyController {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = DataIntegrityViolationException.class)
+    @ExceptionHandler(CompanyNotUniqueException.class)
     public ResponseEntity<Map<String, String>> handleCompanyNotUniqueException(
-            DataIntegrityViolationException e, HttpServletRequest request) {
+            CompanyNotUniqueException e, HttpServletRequest request) {
         Map<String ,String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
