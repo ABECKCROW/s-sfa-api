@@ -1,5 +1,6 @@
 package com.abeck.ssfa.form;
 
+import com.abeck.ssfa.Exception.InvalidSalesPersonIdException;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -35,5 +36,13 @@ public class CompanyForm {
     private String companyRank;
 
     @Positive(message = "自然数を入力してください")
-    private int salesPersonId;
+    private String salesPersonId;
+
+    public int getSalesPersonIdInt(){
+        try{
+            return Integer.parseInt(this.salesPersonId);
+        } catch (NumberFormatException e) {
+            throw new InvalidSalesPersonIdException("数値を入力してください");
+        }
+    }
 }
