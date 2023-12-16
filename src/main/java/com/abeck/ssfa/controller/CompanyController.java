@@ -2,7 +2,6 @@ package com.abeck.ssfa.controller;
 
 import com.abeck.ssfa.Exception.CompanyNotFoundException;
 import com.abeck.ssfa.Exception.CompanyNotUniqueException;
-import com.abeck.ssfa.Exception.InvalidSalesPersonIdException;
 import com.abeck.ssfa.entity.CompanyEntity;
 import com.abeck.ssfa.form.CompanyForm;
 import com.abeck.ssfa.service.CompanyService;
@@ -106,18 +105,6 @@ public class CompanyController {
                 "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
                 "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
                 "message", errors.toString(),
-                "path", request.getRequestURI());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(InvalidSalesPersonIdException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidSalesPersonIdException(
-            InvalidSalesPersonIdException e, HttpServletRequest request) {
-        Map<String, String> body = Map.of(
-                "timestamp", ZonedDateTime.now().toString(),
-                "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
-                "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                "message", e.getMessage(),
                 "path", request.getRequestURI());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
