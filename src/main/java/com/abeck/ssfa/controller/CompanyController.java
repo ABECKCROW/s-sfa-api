@@ -25,6 +25,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.time.ZonedDateTime;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -95,9 +97,13 @@ public class CompanyController {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
 
         List<Map<String, String>> errors = fieldErrors.stream()
-                .map(fieldError -> Map.of(
-                        "field", fieldError.getField(),
-                        "message", Objects.requireNonNull(fieldError.getDefaultMessage())))
+                .map(fieldError -> {
+                    Map<String, String> errorMap = new LinkedHashMap<>();
+                    errorMap.put("field", fieldError.getField());
+                    errorMap.put("message", Objects.requireNonNull(fieldError.getDefaultMessage()));
+                    return errorMap;
+                })
+                .sorted(Comparator.comparing(m -> m.get("field") + m.get("message")))
                 .toList();
 
         Map<String ,String> body = Map.of(
