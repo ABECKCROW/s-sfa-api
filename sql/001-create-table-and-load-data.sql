@@ -12,7 +12,7 @@ CREATE TABLE sales_persons (
 CREATE TABLE companies (
     company_id INT unsigned AUTO_INCREMENT,
     company_name VARCHAR(40) NOT NULL,
-    company_phone VARCHAR(13) NOT NULL,
+    company_phone VARCHAR(11) NOT NULL,
     region VARCHAR(4) NOT NULL,
     city VARCHAR(6) NOT NULL,
     address VARCHAR(40),
@@ -43,10 +43,10 @@ CREATE TABLE appointments (
 INSERT INTO sales_persons (sales_person_name) VALUES('安部'),('山田'),('佐藤'),('鈴木');
 
 INSERT INTO companies (company_name, company_phone, region, city, address, company_rank, sales_person_id) VALUES
-("ABECK株式会社", "03-1234-5678","東京都", "千代田区",  "1-1-1", "S", 1),
-("Disk株式会社", "046-123-4567","神奈川県", "厚木市",  "2-2-2", "A", 2),
-("マウンテン株式会社", "0460-12-3456","神奈川県", "箱根町",  "3-3-3", "B", 3),
-("シュガー株式会社", "0467-12-3456","神奈川県", "綾瀬市",  "4-4-4", "C", 4);
+("ABECK株式会社", "0312345678","東京都", "千代田区",  "1-1-1", "S", 1),
+("Disk株式会社", "0461234567","神奈川県", "厚木市",  "2-2-2", "A", 2),
+("マウンテン株式会社", "0460123456","神奈川県", "箱根町",  "3-3-3", "B", 3),
+("シュガー株式会社", "0467123456","神奈川県", "綾瀬市",  "4-4-4", "C", 4);
 
 INSERT INTO histories (history_date, approach_type, approach_results, company_id) VALUES
 ('2023-11-10', '架電', '担当者不在', 1),
