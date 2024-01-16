@@ -72,7 +72,7 @@ public class CompanyMapperTest {
     @DataSet(value = "datasets/companies.yml")
     @Transactional
     void 企業検索で指定した企業名と電話番号の組み合わせの企業情報が取得できること() {
-        assertThat(companyMapper.isUniqueCompany("ABECK株式会社","0312345678")).contains(
+        assertThat(companyMapper.findByUniqueCompany("ABECK株式会社","0312345678")).contains(
                 new CompanyEntity(1, "ABECK株式会社","0312345678", "東京都", "千代田区", "1-1-1", "S",1)
         );
     }
@@ -81,7 +81,7 @@ public class CompanyMapperTest {
     @DataSet(value = "datasets/companies.yml")
     @Transactional
     void 企業検索で存在しない企業名と電話番号の組み合わせのときに空のOptionalが取得されること() {
-        assertThat(companyMapper.isUniqueCompany("未登録株式会社", "0312345678")).isEmpty();
+        assertThat(companyMapper.findByUniqueCompany("未登録株式会社", "0312345678")).isEmpty();
     }
 
     @Test

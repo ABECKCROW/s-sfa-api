@@ -229,7 +229,7 @@ public class CompanyRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業検索で存在しないIDを指定したときに例外がスローされること() throws Exception {
+    void 企業検索で存在しないIDを指定したときにバリデーションエラーとなること() throws Exception {
         ZonedDateTime currentDateTime = ZonedDateTime.now();
         String timeStamp = currentDateTime.toString();
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/companies/99"))
@@ -244,8 +244,8 @@ public class CompanyRestApiIntegrationTest {
               "message": "Company Not Found",
               "path": "/companies/99"
             }
-        """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (((o1, o2) -> true
-        )))));
+        """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (o1, o2) -> true
+        )));
     }
 
     @Test
@@ -274,13 +274,13 @@ public class CompanyRestApiIntegrationTest {
                 "ID": 5
         }
         """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("ID", (((o1, o2) -> true)))));
+                new Customization("ID", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業名がnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業名がnullの時にバリデーションエラーとなること() throws Exception {
             String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .content("""
@@ -306,13 +306,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                    new Customization("timestamp", (((o1, o2) -> true)))));
+                    new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで電話番号がnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで電話番号がnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -338,13 +338,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで都道府県がnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで都道府県がnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -370,13 +370,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで市区町村がnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで市区町村がnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -402,13 +402,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで住所がnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで住所がnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -434,13 +434,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業ランクがnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業ランクがnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -466,13 +466,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで営業担当者IDがnullの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで営業担当者IDがnullの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -498,13 +498,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業名が空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業名が空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -530,13 +530,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで電話番号が空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで電話番号が空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -562,13 +562,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで都道府県が空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで都道府県が空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -594,13 +594,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで市区町村が空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで市区町村が空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -626,13 +626,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで住所が空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで住所が空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -658,13 +658,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業ランクが空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業ランクが空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -690,13 +690,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで営業担当者IDが空文字の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで営業担当者IDが空文字の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -722,13 +722,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業名が40文字以上の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業名が40文字以上の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -754,13 +754,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで電話番号の始まりが0ではない時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで電話番号の始まりが0ではない時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -786,13 +786,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで電話番号が番号ではない時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで電話番号が番号ではない時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -818,13 +818,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで都道府県が5文字以上の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで都道府県が5文字以上の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -850,13 +850,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで市区町村が7文字以上の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで市区町村が7文字以上の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -882,13 +882,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで住所が41文字以上の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで住所が41文字以上の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -914,13 +914,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業ランクが2文字以上の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業ランクが2文字以上の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -946,13 +946,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業ランクが小文字のアルファベットの時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業ランクが小文字のアルファベットの時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -978,13 +978,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録のリクエストで企業ランクがアルファベット以外の時に例外がスローされること() throws Exception {
+    void 企業登録のリクエストで企業ランクがアルファベット以外の時にバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -1010,13 +1010,13 @@ public class CompanyRestApiIntegrationTest {
                             "status": "400"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録で企業名と電話番号の組み合わせが存在する企業を登録したときに例外がスローされること() throws Exception {
+    void 企業登録で企業名と電話番号の組み合わせが存在する企業を登録したときにバリデーションエラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -1042,6 +1042,6 @@ public class CompanyRestApiIntegrationTest {
                             "message": "すでに登録されている企業です。"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
-                new Customization("timestamp", (((o1, o2) -> true)))));
+                new Customization("timestamp", (o1, o2) -> true)));
     }
 }
