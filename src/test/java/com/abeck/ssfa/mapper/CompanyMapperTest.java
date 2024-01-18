@@ -2,6 +2,7 @@ package com.abeck.ssfa.mapper;
 
 import com.abeck.ssfa.entity.CompanyEntity;
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -86,12 +87,10 @@ public class CompanyMapperTest {
 
     @Test
     @DataSet(value = "datasets/companies.yml")
+    @ExpectedDataSet(value = "datasets/expectedCompanies.yml", ignoreCols = {"company_id"})
     @Transactional
     void 企業登録ができること() {
         CompanyEntity companyEntity = new CompanyEntity(0, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
         companyMapper.insertCompany(companyEntity);
-        assertThat(companyEntity.getCompanyId()).isGreaterThan(4);
     }
-
-
 }
