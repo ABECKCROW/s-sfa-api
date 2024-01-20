@@ -30,7 +30,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import static java.util.Map.entry;
 
 @RestController
 @RequestMapping("/companies")
@@ -96,17 +95,12 @@ public class CompanyController {
     public ResponseEntity<Map<String, String>> handleValidationException(
             MethodArgumentNotValidException e, HttpServletRequest request) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-
-        List<Map<String, String>> errors = fieldErrors.stream()
-                .map(fieldError -> {
-                    Map<String, String> errorMap = new LinkedHashMap<>(
-                            Map.ofEntries(
-                                    entry("field", fieldError.getField()),
-                                    entry("message", Objects.requireNonNull(fieldError.getDefaultMessage()))
-                            )
-                    );
-                    return errorMap;
-                })
+        List<LinkedHashMap<String, String>> errors = fieldErrors.stream()
+                .map(fieldError -> new LinkedHashMap<>(
+                        Map.ofEntries(
+                                Map.entry("field", fieldError.getField()),
+                                Map.entry("message", Objects.requireNonNull(fieldError.getDefaultMessage()))
+                        )))
                 .sorted(Comparator.comparing(m -> m.get("field") + m.get("message")))
                 .toList();
 
