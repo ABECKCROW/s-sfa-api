@@ -28,7 +28,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public int createCompany(String companyName, String companyPhone, String region, String city, String address, String companyRank,int salesPersonId) {
-        companyMapper.findByUniqueCompany(companyName,companyPhone).ifPresent(existingCompany -> {
+        companyMapper.findCompanyByBoth(companyName,companyPhone).ifPresent(existingCompany -> {
             throw new CompanyNotUniqueException("すでに登録されている企業です。");
         });
 

@@ -229,7 +229,7 @@ public class CompanyRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業検索で存在しないIDを指定したときにバリデーションエラーとなること() throws Exception {
+    void 企業検索で存在しないIDを指定したときに404エラーとなること() throws Exception {
         ZonedDateTime currentDateTime = ZonedDateTime.now();
         String timeStamp = currentDateTime.toString();
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/companies/99"))
