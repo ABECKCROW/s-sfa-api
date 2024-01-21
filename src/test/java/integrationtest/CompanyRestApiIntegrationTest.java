@@ -1030,15 +1030,15 @@ public class CompanyRestApiIntegrationTest {
                             "salesPersonId": "1"
                         }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.status().isConflict())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         JSONAssert.assertEquals("""
                         {
                             "timestamp": "20231217T02:24:16.492008+09:00[Asia/Tokyo]",
-                            "error": "Bad Request",
+                            "error": "Conflict",
                             "path": "/companies",
-                            "status": "400",
+                            "status": "409",
                             "message": "すでに登録されている企業です。"
                         }
                     """, response, new CustomComparator(JSONCompareMode.STRICT,

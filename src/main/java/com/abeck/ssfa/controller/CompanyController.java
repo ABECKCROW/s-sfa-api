@@ -83,11 +83,11 @@ public class CompanyController {
             CompanyNotUniqueException e, HttpServletRequest request) {
         Map<String ,String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
-                "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
-                "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                "status", String.valueOf(HttpStatus.CONFLICT.value()),
+                "error", HttpStatus.CONFLICT.getReasonPhrase(),
                 "message", e.getMessage(),
                 "path", request.getRequestURI());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -95,12 +95,13 @@ public class CompanyController {
     public ResponseEntity<Map<String, String>> handleValidationException(
             MethodArgumentNotValidException e, HttpServletRequest request) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        List<LinkedHashMap<String, String>> errors = fieldErrors.stream()
-                .map(fieldError -> new LinkedHashMap<>(
-                        Map.ofEntries(
-                                Map.entry("field", fieldError.getField()),
-                                Map.entry("message", Objects.requireNonNull(fieldError.getDefaultMessage()))
-                        )))
+        List<Map<String, String>> errors = fieldErrors.stream()
+                .map(fieldError -> {
+                    Map<String, String> errorMap = new LinkedHashMap<>();
+                    errorMap.put("field", fieldError.getField());
+                    errorMap.put("message", Objects.requireNonNull(fieldError.getDefaultMessage()));
+                    return errorMap;
+                })
                 .sorted(Comparator.comparing(m -> m.get("field") + m.get("message")))
                 .toList();
 
