@@ -62,11 +62,11 @@ class CompanyServiceImplTest {
     public void 企業が登録できること() {
         CompanyEntity entity = new CompanyEntity(0, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
         CompanyEntity expectedCompany = new CompanyEntity(0,"株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
-        doReturn(Optional.empty()).when(companyMapper).findCompanyByBoth("株式会社ABECK","0312345678");
+        doReturn(Optional.empty()).when(companyMapper).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         doNothing().when(companyMapper).insertCompany(entity);
 
         int actual = companyServiceImpl.createCompany("株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
-        verify(companyMapper, times(1)).findCompanyByBoth("株式会社ABECK","0312345678");
+        verify(companyMapper, times(1)).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         verify(companyMapper, times(1)).insertCompany(entity);
     }
 
@@ -74,10 +74,10 @@ class CompanyServiceImplTest {
     public void 企業登録で企業名と電話番号の組み合わせが存在する企業を登録したときに例外がスローされること() {
         CompanyEntity entity = new CompanyEntity(0, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
         CompanyEntity expectedCompany = new CompanyEntity(0,"株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
-        doReturn(Optional.of(new CompanyEntity(0, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1))).when(companyMapper).findCompanyByBoth("株式会社ABECK","0312345678");
+        doReturn(Optional.of(new CompanyEntity(0, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1))).when(companyMapper).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
 
         assertThatThrownBy(() -> companyServiceImpl.createCompany("株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1)).isInstanceOfSatisfying(CompanyNotUniqueException.class, e -> assertThat(e.getMessage()).isEqualTo("すでに登録されている企業です。"));
-        verify(companyMapper, times(1)).findCompanyByBoth("株式会社ABECK","0312345678");
+        verify(companyMapper, times(1)).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         verify(companyMapper, times(0)).insertCompany(entity);
     }
 }
