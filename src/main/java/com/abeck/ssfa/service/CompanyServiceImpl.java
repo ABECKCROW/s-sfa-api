@@ -4,7 +4,6 @@ import com.abeck.ssfa.Exception.CompanyNotFoundException;
 import com.abeck.ssfa.Exception.CompanyNotUniqueException;
 import com.abeck.ssfa.entity.CompanyEntity;
 
-import com.abeck.ssfa.form.CompanyForm;
 import com.abeck.ssfa.mapper.CompanyMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
