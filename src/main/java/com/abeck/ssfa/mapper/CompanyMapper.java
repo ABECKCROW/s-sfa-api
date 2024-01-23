@@ -1,12 +1,7 @@
 package com.abeck.ssfa.mapper;
 
 import com.abeck.ssfa.entity.CompanyEntity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,4 +27,7 @@ import java.util.Optional;
      @Insert("INSERT INTO companies (company_name, company_phone, region, city, address, company_rank, sales_person_id) VALUES (#{companyName}, #{companyPhone}, #{region}, #{city}, #{address}, #{companyRank}, #{salesPersonId})")
      @Options(useGeneratedKeys = true, keyColumn = "companyId", keyProperty = "companyId")
      void insertCompany(CompanyEntity companyEntity);
+
+     @Update("UPDATE companies SET company_name = #{companyName}, company_phone = #{companyPhone}, region = #{region}, city = #{city}, address = #{address}, company_rank = #{companyRank}, sales_person_id = #{salesPersonId} WHERE company_id = #{companyId}")
+     void updateCompany(int companyId, String companyName, String companyPhone, String region, String city, String address, String companyRank, int salesPersonId);
  }

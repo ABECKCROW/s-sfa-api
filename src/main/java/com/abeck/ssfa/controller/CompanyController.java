@@ -12,15 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -64,6 +56,14 @@ public class CompanyController {
                 .toUri();
         String newId = String.valueOf(createdId);
         return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID", newId));
+    }
+
+    @PatchMapping("/{company_id}")
+    public ResponseEntity<Map<String,String>> updateCompany (
+            @PathVariable("company_id") int companyId,
+            @RequestBody @Validated CompanyForm companyForm) {
+        companyService.updateCompany(companyId,companyForm.getCompanyName(), companyForm.getCompanyPhone(), companyForm.getRegion(), companyForm.getCity(), companyForm.getAddress(), companyForm.getCompanyRank(), companyForm.getSalesPersonIdInt());
+        return  ResponseEntity.ok(Map.of("message", "企業情報が正常に更新されました。"));
     }
 
     @ExceptionHandler(CompanyNotFoundException.class)

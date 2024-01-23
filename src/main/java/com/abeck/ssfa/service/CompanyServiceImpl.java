@@ -4,6 +4,7 @@ import com.abeck.ssfa.Exception.CompanyNotFoundException;
 import com.abeck.ssfa.Exception.CompanyNotUniqueException;
 import com.abeck.ssfa.entity.CompanyEntity;
 
+import com.abeck.ssfa.form.CompanyForm;
 import com.abeck.ssfa.mapper.CompanyMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,12 @@ public class CompanyServiceImpl implements CompanyService {
         CompanyEntity newCompany = new CompanyEntity(0, companyName, companyPhone, region, city, address, companyRank, salesPersonId);
         companyMapper.insertCompany(newCompany);
         return newCompany.getCompanyId();
+    }
+
+    @Override
+    public CompanyEntity updateCompany(int companyId, String companyName, String companyPhone, String region, String city, String address, String companyRank, int salesPersonId) {
+        CompanyEntity existingCompany = companyMapper.findCompanyById(companyId).orElseThrow(() -> new CompanyNotFoundException("a"));
+        companyMapper.updateCompany(companyId, companyName, companyPhone, region, city, address, companyRank, salesPersonId);
+        return existingCompany;
     }
 }
