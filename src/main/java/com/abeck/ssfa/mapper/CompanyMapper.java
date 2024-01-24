@@ -27,7 +27,7 @@ import java.util.Optional;
      Optional<CompanyEntity> findCompanyById(int companyId);
 
      @Select("SELECT * FROM companies WHERE company_name = #{companyName} AND company_phone = #{companyPhone}")
-     Optional<CompanyEntity> isUniqueCompany(String companyName, String companyPhone);
+     Optional<CompanyEntity> findCompanyByNameAndPhone(String companyName, String companyPhone);
 
      @Insert("INSERT INTO companies (company_name, company_phone, region, city, address, company_rank, sales_person_id) VALUES (#{companyName}, #{companyPhone}, #{region}, #{city}, #{address}, #{companyRank}, #{salesPersonId})")
      @Options(useGeneratedKeys = true, keyColumn = "companyId", keyProperty = "companyId")
