@@ -1,6 +1,7 @@
 package com.abeck.ssfa.mapper;
 
 import com.abeck.ssfa.entity.CompanyEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -36,4 +37,7 @@ import java.util.Optional;
 
      @Update("UPDATE companies SET company_name = #{companyEntity.companyName}, company_phone = #{companyEntity.companyPhone}, region = #{companyEntity.region}, city = #{companyEntity.city}, address = #{companyEntity.address}, company_rank = #{companyEntity.companyRank}, sales_person_id = #{companyEntity.salesPersonId} WHERE company_id = #{companyId}")
      void updateCompany(int companyId, CompanyEntity companyEntity);
+
+     @Delete("DELETE FROM companies WHERE company_id = #{companyId}")
+     void deleteCompany(int companyId);
  }

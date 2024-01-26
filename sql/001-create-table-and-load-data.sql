@@ -29,7 +29,7 @@ CREATE TABLE histories (
     approach_results TEXT,
     company_id INT unsigned NOT NULL,
     PRIMARY KEY(history_id),
-    FOREIGN KEY(company_id) REFERENCES companies(company_id)
+    FOREIGN KEY(company_id) REFERENCES companies(company_id) ON DELETE CASCADE
 );
 
 CREATE TABLE appointments (
@@ -37,7 +37,7 @@ CREATE TABLE appointments (
     appointment_date TIMESTAMP NOT NULL,
     history_id INT unsigned NOT NULL,
     PRIMARY KEY(appointment_id),
-    FOREIGN KEY(history_id) REFERENCES histories(history_id)
+    FOREIGN KEY(history_id) REFERENCES histories(history_id) ON DELETE CASCADE
 );
 
 INSERT INTO sales_persons (sales_person_name) VALUES('安部'),('山田'),('佐藤'),('鈴木');

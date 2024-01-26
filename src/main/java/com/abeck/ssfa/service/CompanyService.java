@@ -13,4 +13,6 @@ public interface CompanyService {
     int createCompany(String companyName, String companyPhone, String region, String city, String address, String companyRank, int salesPersonId);
 
     void updateCompany(int companyId, CompanyEntity companyEntity);
+
+    void deleteCompany(int companyId);
 }
