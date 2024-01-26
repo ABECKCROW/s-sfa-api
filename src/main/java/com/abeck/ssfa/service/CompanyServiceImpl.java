@@ -18,7 +18,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<CompanyEntity> getCompanyWithFilter(String companyName, String companyPhone, String region, String city, String companyRank) {
-        return companyMapper.getCompanyWithFilter(companyName,companyPhone,region,city,companyRank);
+        return companyMapper.getCompanyWithFilter(companyName, companyPhone, region, city, companyRank);
     }
 
     @Override
@@ -27,13 +27,24 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public int createCompany(String companyName, String companyPhone, String region, String city, String address, String companyRank,int salesPersonId) {
-        companyMapper.findCompanyByNameAndPhone(companyName,companyPhone).ifPresent(existingCompany -> {
+    public int createCompany(String companyName, String companyPhone, String region, String city, String address, String companyRank, int salesPersonId) {
+        companyMapper.findCompanyByNameAndPhone(companyName, companyPhone).ifPresent(existingCompany -> {
             throw new CompanyNotUniqueException("すでに登録されている企業です。");
         });
 
         CompanyEntity newCompany = new CompanyEntity(0, companyName, companyPhone, region, city, address, companyRank, salesPersonId);
         companyMapper.insertCompany(newCompany);
         return newCompany.getCompanyId();
+    }
+
+    @Override
+    public void updateCompany(int companyId, CompanyEntity companyEntity) {
+        companyMapper.findCompanyById(companyId)
+                .orElseThrow(() -> new CompanyNotFoundException("未登録の企業です。"));
+        companyMapper.findCompanyByNameAndPhone(companyEntity.getCompanyName(), companyEntity.getCompanyPhone())
+                .ifPresent(existingCompany -> {
+                    throw new CompanyNotUniqueException("すでに登録されている企業です。");
+                });
+        companyMapper.updateCompany(companyId, companyEntity);
     }
 }

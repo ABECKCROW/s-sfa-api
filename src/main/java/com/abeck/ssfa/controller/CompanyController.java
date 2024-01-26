@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,6 +65,14 @@ public class CompanyController {
                 .toUri();
         String newId = String.valueOf(createdId);
         return ResponseEntity.created(url).body(Map.of("message", "企業が正常に登録されました。", "ID", newId));
+    }
+
+    @PatchMapping("/{company_id}")
+    public ResponseEntity<Map<String,String>> updateCompany (
+            @PathVariable("company_id") int companyId,
+            @RequestBody @Validated CompanyForm companyForm) {
+        companyService.updateCompany(companyId, companyForm.convertToCompany(companyId));
+        return  ResponseEntity.ok(Map.of("message", "企業情報が正常に更新されました。"));
     }
 
     @ExceptionHandler(CompanyNotFoundException.class)
