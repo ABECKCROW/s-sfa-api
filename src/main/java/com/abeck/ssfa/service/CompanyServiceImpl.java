@@ -38,14 +38,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyEntity updateCompany(int companyId, CompanyEntity companyEntity) {
-        CompanyEntity unregisteredCompany = companyMapper.findCompanyById(companyId)
+    public void updateCompany(int companyId, CompanyEntity companyEntity) {
+        companyMapper.findCompanyById(companyId)
                 .orElseThrow(() -> new CompanyNotFoundException("未登録の企業です。"));
         companyMapper.findCompanyByNameAndPhone(companyEntity.getCompanyName(), companyEntity.getCompanyPhone())
                 .ifPresent(existingCompany -> {
                     throw new CompanyNotUniqueException("すでに登録されている企業です。");
                 });
         companyMapper.updateCompany(companyId, companyEntity);
-        return null;
     }
 }
