@@ -71,7 +71,7 @@ public class CompanyController {
     public ResponseEntity<Map<String,String>> updateCompany (
             @PathVariable("company_id") int companyId,
             @RequestBody @Validated CompanyForm companyForm) {
-        companyService.updateCompany(companyId,companyForm.getCompanyName(), companyForm.getCompanyPhone(), companyForm.getRegion(), companyForm.getCity(), companyForm.getAddress(), companyForm.getCompanyRank(), companyForm.getSalesPersonIdInt());
+        companyService.updateCompany(companyId, companyForm.convertToCompany(companyId));
         return  ResponseEntity.ok(Map.of("message", "企業情報が正常に更新されました。"));
     }
 

@@ -1,10 +1,13 @@
 package com.abeck.ssfa.form;
 
+import com.abeck.ssfa.entity.CompanyEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import jakarta.validation.constraints.Size;
+
+import java.util.Map;
 
 @Getter
 @AllArgsConstructor
@@ -41,5 +44,9 @@ public class CompanyForm {
 
     public int getSalesPersonIdInt() {
         return Integer.parseInt(this.salesPersonId);
+    }
+
+    public CompanyEntity convertToCompany(int companyId) {
+        return new CompanyEntity(companyId, this.getCompanyName(), this.getCompanyPhone(), this.getRegion(), this.getCity(), this.getAddress(), this.getCompanyRank(), this.getSalesPersonIdInt());
     }
 }

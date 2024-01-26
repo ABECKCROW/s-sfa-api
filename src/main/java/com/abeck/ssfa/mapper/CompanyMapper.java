@@ -27,13 +27,13 @@ import java.util.Optional;
      @Select("SELECT * FROM companies WHERE company_id = #{companyId}")
      Optional<CompanyEntity> findCompanyById(int companyId);
 
-     @Select("SELECT * FROM companies WHERE company_name = #{companyName} AND company_phone = #{companyPhone}")
+     @Select("SELECT * FROM companies WHERE company_name LIKE #{companyName} AND company_phone LIKE #{companyPhone}")
      Optional<CompanyEntity> findCompanyByNameAndPhone(String companyName, String companyPhone);
 
      @Insert("INSERT INTO companies (company_name, company_phone, region, city, address, company_rank, sales_person_id) VALUES (#{companyName}, #{companyPhone}, #{region}, #{city}, #{address}, #{companyRank}, #{salesPersonId})")
      @Options(useGeneratedKeys = true, keyColumn = "companyId", keyProperty = "companyId")
      void insertCompany(CompanyEntity companyEntity);
 
-     @Update("UPDATE companies SET company_name = #{companyName}, company_phone = #{companyPhone}, region = #{region}, city = #{city}, address = #{address}, company_rank = #{companyRank}, sales_person_id = #{salesPersonId} WHERE company_id = #{companyId}")
-     void updateCompany(int companyId, String companyName, String companyPhone, String region, String city, String address, String companyRank, int salesPersonId);
+     @Update("UPDATE companies SET company_name = #{companyEntity.companyName}, company_phone = #{companyEntity.companyPhone}, region = #{companyEntity.region}, city = #{companyEntity.city}, address = #{companyEntity.address}, company_rank = #{companyEntity.companyRank}, sales_person_id = #{companyEntity.salesPersonId} WHERE company_id = #{companyId}")
+     void updateCompany(int companyId, CompanyEntity companyEntity);
  }
