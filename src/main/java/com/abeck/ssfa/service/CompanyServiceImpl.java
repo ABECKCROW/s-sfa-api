@@ -47,4 +47,11 @@ public class CompanyServiceImpl implements CompanyService {
                 });
         companyMapper.updateCompany(companyId, companyEntity);
     }
+
+    @Override
+    public void deleteCompany(int companyId) {
+        companyMapper.findCompanyById(companyId)
+                .orElseThrow(() -> new CompanyNotFoundException("未登録の企業です。"));
+        companyMapper.deleteCompany(companyId);
+    }
 }

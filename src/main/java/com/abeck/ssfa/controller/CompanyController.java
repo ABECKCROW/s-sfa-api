@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -73,6 +74,13 @@ public class CompanyController {
             @RequestBody @Validated CompanyForm companyForm) {
         companyService.updateCompany(companyId, companyForm.convertToCompany(companyId));
         return  ResponseEntity.ok(Map.of("message", "企業情報が正常に更新されました。"));
+    }
+
+    @DeleteMapping("/{companyId}")
+    public ResponseEntity<Map<String, String>> deleteCompany
+            (@PathVariable("companyId") int companyId) {
+        companyService.deleteCompany(companyId);
+        return ResponseEntity.ok(Map.of("message", "企業情報が正常に削除されました。"));
     }
 
     @ExceptionHandler(CompanyNotFoundException.class)
