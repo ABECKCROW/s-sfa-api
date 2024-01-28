@@ -1044,4 +1044,98 @@ public class CompanyRestApiIntegrationTest {
                     """, response, new CustomComparator(JSONCompareMode.STRICT,
                 new Customization("timestamp", (o1, o2) -> true)));
     }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業更新で存在しないIDを指定したときに404エラーとなること() throws Exception {
+        ZonedDateTime currentDateTime = ZonedDateTime.now();
+        String timeStamp = currentDateTime.toString();
+        String response = mockMvc.perform(MockMvcRequestBuilders.patch("/companies/99")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content("""
+                        {
+                            "companyName": "更新株式会社",
+                            "companyPhone": "0312345678",
+                            "region": "神奈川県",
+                            "city": "川崎市",
+                            "address": "高津区1-1-1",
+                            "companyRank": "S",
+                            "salesPersonId": "1"
+                        }
+                        """))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals(String.format("""
+                    {
+                      "timestamp": "%s",
+                      "status": "404",
+                      "error": "Not Found",
+                      "message": "未登録の企業です。",
+                      "path": "/companies/99"
+                    }
+                """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (o1, o2) -> true
+        )));
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業更新で企業名と電話番号の組み合わせが存在する企業を更新したときにバリデーションエラーとなること() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.patch("/companies/1")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content("""
+                        {
+                            "companyName": "ABECK株式会社",
+                            "companyPhone": "0312345678",
+                            "region": "神奈川県",
+                            "city": "川崎市",
+                            "address": "高津区1-1-1",
+                            "companyRank": "S",
+                            "salesPersonId": "1"
+                        }
+                        """))
+                .andExpect(MockMvcResultMatchers.status().isConflict())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals("""
+                        {
+                            "timestamp": "20231217T02:24:16.492008+09:00[Asia/Tokyo]",
+                            "error": "Conflict",
+                            "path": "/companies/1",
+                            "status": "409",
+                            "message": "すでに登録されている企業です。"
+                        }
+                    """, response, new CustomComparator(JSONCompareMode.STRICT,
+                new Customization("timestamp", (o1, o2) -> true)));
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業更新で存在するIDを指定したときに正常に企業情報が更新できること() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.patch("/companies/1")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content("""
+                        {
+                            "companyName": "更新株式会社",
+                            "companyPhone": "0312345678",
+                            "region": "神奈川県",
+                            "city": "川崎市",
+                            "address": "高津区1-1-1",
+                            "companyRank": "S",
+                            "salesPersonId": "1"
+                        }
+                        """))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals("""
+        {
+                "message": "企業情報が正常に更新されました。"
+        }
+        """, response, new CustomComparator(JSONCompareMode.STRICT,
+                new Customization("ID", (o1, o2) -> true)));
+    }
 }
