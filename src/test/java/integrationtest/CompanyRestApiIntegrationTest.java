@@ -1016,7 +1016,7 @@ public class CompanyRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業登録で企業名と電話番号の組み合わせが存在する企業を登録したときにバリデーションエラーとなること() throws Exception {
+    void 企業登録で企業名と電話番号の組み合わせが存在する企業を登録したときに409エラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
@@ -1082,7 +1082,7 @@ public class CompanyRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/companies.yml")
     @Transactional
-    void 企業更新で企業名と電話番号の組み合わせが存在する企業を更新したときにバリデーションエラーとなること() throws Exception {
+    void 企業更新で企業名と電話番号の組み合わせが存在する企業を更新したときに409エラーとなること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.patch("/companies/1")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content("""
