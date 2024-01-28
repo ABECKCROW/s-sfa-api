@@ -93,4 +93,12 @@ public class CompanyMapperTest {
         CompanyEntity companyEntity = new CompanyEntity(0, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
         companyMapper.insertCompany(companyEntity);
     }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業更新で指定したIDの企業情報が更新できること() {
+        CompanyEntity companyEntity = new CompanyEntity(1, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
+        companyMapper.updateCompany(1, companyEntity);
+    }
 }

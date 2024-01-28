@@ -23,7 +23,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyEntity findCompanyById(int companyId) {
-        return companyMapper.findCompanyById(companyId).orElseThrow(() -> new CompanyNotFoundException("Company Not Found"));
+        return companyMapper.findCompanyById(companyId).orElseThrow(() -> new CompanyNotFoundException("未登録の企業です。"));
     }
 
     @Override
