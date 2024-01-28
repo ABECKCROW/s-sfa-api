@@ -1138,4 +1138,43 @@ public class CompanyRestApiIntegrationTest {
         """, response, new CustomComparator(JSONCompareMode.STRICT,
                 new Customization("ID", (o1, o2) -> true)));
     }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業削除で存在するIDを指定したときに正常に企業情報が削除できること() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.delete("/companies/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals("""
+        {
+                "message": "企業情報が正常に削除されました。"
+        }
+        """, response, new CustomComparator(JSONCompareMode.STRICT,
+                new Customization("ID", (o1, o2) -> true)));
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業削除で存在しないIDを指定したときに404エラーとなること() throws Exception {
+        ZonedDateTime currentDateTime = ZonedDateTime.now();
+        String timeStamp = currentDateTime.toString();
+        String response = mockMvc.perform(MockMvcRequestBuilders.delete("/companies/99"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals(String.format("""
+                    {
+                      "timestamp": "%s",
+                      "status": "404",
+                      "error": "Not Found",
+                      "message": "未登録の企業です。",
+                      "path": "/companies/99"
+                    }
+                """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (o1, o2) -> true
+        )));
+    }
+
 }
