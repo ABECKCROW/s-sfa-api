@@ -101,4 +101,11 @@ public class CompanyMapperTest {
         CompanyEntity companyEntity = new CompanyEntity(1, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
         companyMapper.updateCompany(1, companyEntity);
     }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @Transactional
+    void 企業削除で指定したIDの企業情報が削除できること() {
+        companyMapper.deleteCompany(1);
+    }
 }
