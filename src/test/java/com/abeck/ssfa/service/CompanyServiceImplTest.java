@@ -100,10 +100,11 @@ class CompanyServiceImplTest {
     }
 
     @Test
-    public void 企業で存在しないIDを指定したときに例外がスローされること() {
+    public void 企業更新で存在しないIDを指定したときに例外がスローされること() {
         CompanyEntity entity = new CompanyEntity(1, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
         doReturn(Optional.empty()).when(companyMapper).findCompanyById(99);
-        assertThatThrownBy(() -> companyServiceImpl.updateCompany(99, entity)).isInstanceOfSatisfying(CompanyNotFoundException.class, e -> assertThat(e.getMessage()).isEqualTo("未登録の企業です。"));
+        assertThatThrownBy(() -> companyServiceImpl.updateCompany(99, entity))
+                .isInstanceOfSatisfying(CompanyNotFoundException.class, e -> assertThat(e.getMessage()).isEqualTo("未登録の企業です。"));
         verify(companyMapper, times(1)). findCompanyById(99);
         verify(companyMapper, times(0)).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         verify(companyMapper, times(0)).updateCompany(99,entity);
@@ -114,9 +115,12 @@ class CompanyServiceImplTest {
         CompanyEntity entity = new CompanyEntity(1, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1);
         doReturn(Optional.of(new CompanyEntity(1, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1)))
                 .when(companyMapper).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
+        doReturn(Optional.of(new CompanyEntity(1, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1)))
+                .when(companyMapper).findCompanyById(1);
 
-        assertThatThrownBy(() -> companyServiceImpl.createCompany("株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1))
+        assertThatThrownBy(() -> companyServiceImpl.updateCompany(1, entity))
                 .isInstanceOfSatisfying(CompanyNotUniqueException.class, e -> assertThat(e.getMessage()).isEqualTo("すでに登録されている企業です。"));
+        verify(companyMapper, times(1)). findCompanyById(1);
         verify(companyMapper, times(1)).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         verify(companyMapper, times(0)).updateCompany(1,entity);
     }
