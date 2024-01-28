@@ -241,7 +241,7 @@ public class CompanyRestApiIntegrationTest {
               "timestamp": "%s",
               "status": "404",
               "error": "Not Found",
-              "message": "Company Not Found",
+              "message": "未登録の企業です。",
               "path": "/companies/99"
             }
         """, timeStamp), response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", (o1, o2) -> true
