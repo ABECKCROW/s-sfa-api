@@ -251,6 +251,7 @@ public class CompanyRestApiIntegrationTest {
 
     @Test
     @DataSet(value = "datasets/companies.yml")
+    @ExpectedDataSet(value = "datasets/expectedCreateCompanies.yml", ignoreCols = {"company_id"})
     @Transactional
     void 企業登録ができること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/companies")
