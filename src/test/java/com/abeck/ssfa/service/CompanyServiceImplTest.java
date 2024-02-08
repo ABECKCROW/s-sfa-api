@@ -124,4 +124,24 @@ class CompanyServiceImplTest {
         verify(companyMapper, times(1)).findCompanyByNameAndPhone("株式会社ABECK","0312345678");
         verify(companyMapper, times(0)).updateCompany(1,entity);
     }
+
+    @Test
+    public void 企業が削除できること() {
+        doReturn(Optional.of(new CompanyEntity(1, "株式会社ABECK","0312345678","東京都","千代田区","1-1-1","S",1)))
+                .when(companyMapper).findCompanyById(1);
+        doNothing().when(companyMapper).deleteCompany(1);
+
+        companyServiceImpl.deleteCompany(1);
+        verify(companyMapper, times(1)). findCompanyById(1);
+        verify(companyMapper, times(1)).deleteCompany(1);
+    }
+
+    @Test
+    public void 企業削除で存在しないIDを指定したときに例外がスローされること() {
+        doReturn(Optional.empty()).when(companyMapper).findCompanyById(99);
+        assertThatThrownBy(() -> companyServiceImpl.deleteCompany(99))
+                .isInstanceOfSatisfying(CompanyNotFoundException.class, e -> assertThat(e.getMessage()).isEqualTo("未登録の企業です。"));
+        verify(companyMapper, times(1)). findCompanyById(99);
+        verify(companyMapper, times(0)).deleteCompany(99);
+    }
 }

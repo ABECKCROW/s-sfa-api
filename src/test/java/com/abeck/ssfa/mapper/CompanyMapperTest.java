@@ -87,7 +87,7 @@ public class CompanyMapperTest {
 
     @Test
     @DataSet(value = "datasets/companies.yml")
-    @ExpectedDataSet(value = "datasets/expectedCompanies.yml", ignoreCols = {"company_id"})
+    @ExpectedDataSet(value = "datasets/expectedCreateCompanies.yml", ignoreCols = {"company_id"})
     @Transactional
     void 企業登録ができること() {
         CompanyEntity companyEntity = new CompanyEntity(0, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
@@ -96,9 +96,18 @@ public class CompanyMapperTest {
 
     @Test
     @DataSet(value = "datasets/companies.yml")
+    @ExpectedDataSet(value = "datasets/expectedUpdateCompanies.yml")
     @Transactional
     void 企業更新で指定したIDの企業情報が更新できること() {
-        CompanyEntity companyEntity = new CompanyEntity(1, "未登録株式会社", "0312345678", "神奈川県", "川崎市", "高津区1-1-1" ,"S", 1);
-        companyMapper.updateCompany(1, companyEntity);
+        CompanyEntity companyEntity = new CompanyEntity(4, "更新後株式会社", "0982345678", "沖縄県", "那覇市", "44-44-44" ,"S", 4);
+        companyMapper.updateCompany(4, companyEntity);
+    }
+
+    @Test
+    @DataSet(value = "datasets/companies.yml")
+    @ExpectedDataSet(value = "datasets/expectedDeleteCompanies.yml")
+    @Transactional
+    void 企業削除で指定したIDの企業情報が削除できること() {
+        companyMapper.deleteCompany(4);
     }
 }

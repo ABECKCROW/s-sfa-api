@@ -1,0 +1,27 @@
+companies:
+  - company_id: 1
+    company_name: "ABECK株式会社"
+    company_phone: "0312345678"
+    region: "東京都"
+    city: "千代田区"
+    address: "1-1-1"
+    company_rank: "S"
+    sales_person_id: 1
+
+  - company_id: 2
+    company_name: "Disk株式会社"
+    company_phone: "0461234567"
+    region: "神奈川県"
+    city: "厚木市"
+    address: "2-2-2"
+    company_rank: "A"
+    sales_person_id: 2
+
+  - company_id: 3
+    company_name: "マウンテン株式会社"
+    company_phone: "0460123456"
+    region: "神奈川県"
+    city: "箱根町"
+    address: "3-3-3"
+    company_rank: "B"
+    sales_person_id: 3
